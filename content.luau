@@ -1,7 +1,7 @@
 
-local text_service = game:GetChildren("TextService")
-local tween_service = game.TweenService
-local user_input = game.UserInputService
+local text_service = game:GetService("TextService")
+local tween_service = game:GetService("TweenService")
+local user_input = game:GetService("UserInputService")
 local player = game.Players.LocalPlayer
 
 local janitor = require("@self/Janitor")
