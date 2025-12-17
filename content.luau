@@ -1,25 +1,17 @@
-local text_service = game.TextService
+
+local text_service = game:GetChildren("TextService")
 local tween_service = game.TweenService
 local user_input = game.UserInputService
 local player = game.Players.LocalPlayer
 
-local janitor = require(script.Parent.Janitor)
-local toggleInterface = require(script.Parent.InterfaceVisuals.InterfaceVisualizerControll)
-
-local info = TweenInfo.new(.2, Enum.EasingStyle.Linear)
+local janitor = require("@self/Janitor")
 
 local basicColor = Color3.new(1, 0.329412, 0.329412)
-local result = script.Result
-
 local f = math.floor
+local info = TweenInfo.new(.2, Enum.EasingStyle.Linear)
+
 local janitors_group: {typeof(janitor.new())} = {}
 local actual_running = {}
-
-local resultToggle = toggleInterface.new(script.Result)
-
-script.Result.TextButton.Activated:Connect(function()
-	resultToggle:Close()
-end)
 
 local function set_gradient(label: TextLabel)
 	local gradient = Instance.new("UIGradient", label)
@@ -233,7 +225,6 @@ local function create_text(data: TextControllData, yields: boolean)
 								lettersFrames:FindFirstChildOfClass("TextLabel").TextColor3 = color
 								actual_objects:Add(lettersFrames.InputBegan:Connect(function(input: InputObject) 
 									if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-										resultToggle:Open()
 										if not referenceColor.ignoreColor then
 											result.ContentValue.Text = `<b><font color="rgb({f(color.R * 255)}, {f(color.G*255)}, {f(color.B*255)})">{referenceColor.information}</font></b>`
 										else
